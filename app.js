@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 app.post('/img_articles',multer, (req, res) => {
-    return console.log('test')
+    console.log('req.body => post => img_articles : ',req.body)
+    console.log('méthode post /img_articles')
 })
 
 require('./js_serveur/apiForm')(app)

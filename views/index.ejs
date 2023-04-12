@@ -8,33 +8,17 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Hello World</h2>
+    <h2>Création d'articles : </h2>
     <form action="/api/form" id="form">
         <div id="editorjs"></div>
         <div>
             <label for="">Date de mise en ligne :</label>
-            <input type="date" id="test_text">
+            <input type="date" id="date_parution">
         </div>
-        <div>
-            <label for="Premium">Premium</label>
-            <div>
-                <label for="Oui">Oui</label>
-                <input type="radio" name="Premium" id="Oui">
-            </div>
-            <div>
-                <label for="Non">Non</label>
-                <input type="radio" name="Premium" id="Non">
-            </div>
-        </div>
-        <div id="divAuthor">
-            <label for="">Auteur(s)</label>
-            <button type="button" id="addAuthor" onclick="test()">+</button>
-            <input type="text" placeholder="Auteur">
-        </div>
-
-
         <input type="submit" value="Envoyer">
     </form>
+
+
     <script src="../js_client/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
@@ -75,9 +59,15 @@
                 image: {
                     class: ImageTool,
                     config: {
-                        endpoints: {
-                        byFile: 'http://localhost:8008/img_articles', // Your backend file uploader endpoint
-                        byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
+                        uploader: {
+                            uploadByFile(file){
+                                fetch('/img_articles', {
+                                    method: "POST",
+                                    body: file
+                                })
+                                .then( upload => console.log(upload))
+                                .catch(err => console.log(err))
+                            }
                         }
                     }
                 }
