@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Hello World</h2>
+    <form action="submit" id="form">
+        <div id="editorjs"></div>
+        <div>
+            <label for="">Date de mise en ligne :</label>
+            <input type="date" id="test_text">
+        </div>
+        <div>
+            <label for="Premium">Premium</label>
+            <div>
+                <label for="Oui">Oui</label>
+                <input type="radio" name="Premium" id="Oui">
+            </div>
+            <div>
+                <label for="Non">Non</label>
+                <input type="radio" name="Premium" id="Non">
+            </div>
+        </div>
+        <div id="divAuthor">
+            <label for="">Auteur(s)</label>
+            <button type="button" id="addAuthor" onclick="test()">+</button>
+            <input type="text" placeholder="Auteur">
+        </div>
+
+
+        <input type="submit" value="Envoyer">
+    </form>
+    <script src="../js_client/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@2.3.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+    <script>
+        const editor = new EditorJS({
+            holder :'editorjs',
+            tools: {
+                header: {
+                    class: Header,
+                    config : {
+                        placeholder: 'Mettre un titre',
+                        shortcut: 'CMD+SHIFT+h',
+                        levels: [1,2,3],
+                        defaultLevel: 1
+                    }
+                },
+                list: {
+                    class: List,
+                    inlineToolbar: true,
+                    shortcut: 'CMD+SHIFT+l',
+                    config: {
+                        defaultStyle: 'unordered'
+                    }
+                },
+                quote: {
+                    class: Quote,
+                    inlineToolbar: true,
+                    shortcut: 'CMD+SHIFT+q',
+                    config: {
+                        quotePlaceholder: 'Enter a quote',
+                        captionPlaceholder: 'Quote\'s author',
+                    },
+                },
+                image: {
+                    class: ImageTool,
+                    config: {
+                        endpoints: {
+                        byFile: 'http://localhost:8008/assets/img_articles', // Your backend file uploader endpoint
+                        byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
