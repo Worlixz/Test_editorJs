@@ -9,7 +9,7 @@
 </head>
 <body>
     <h2>Création d'articles : </h2>
-    <form action="/api/form" id="form">
+    <form action="/api/form" id="form" enctype="multipart/form-data">
         <div id="editorjs"></div>
         <div>
             <label for="">Date de mise en ligne :</label>
@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@2.3.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
     <script>
         const editor = new EditorJS({
@@ -61,16 +61,36 @@
                     config: {
                         uploader: {
                             uploadByFile(file){
+                                const formData = new FormData();
+                                formData.append('file', file);
+                                console.log('formData :',formData)
+
                                 fetch('/img_articles', {
-                                    method: "POST",
-                                    body: file
+                                    method: 'POST',
+                                    body: formData
                                 })
-                                .then( upload => console.log(upload))
+                                .then(response => {
+                                    if (response.ok) {
+                                        console.log('File uploaded successfully');
+                                    } else {
+                                        console.log(response)
+                                        console.log('Upload failed');
+                                    }
+                                })
                                 .catch(err => console.log(err))
                             }
                         }
                     }
                 }
+                /* image: {
+                    class: ImageTool,
+                    config: {
+                        endpoints: {
+                        byFile: 'http://localhost:3000/uploadFile', // Your backend file uploader endpoint
+                        byUrl: 'http://localhost:3000/fetchUrl', // Your endpoint that provides uploading by Url
+                        }
+                    }
+                } */
             }
         })
     </script>
