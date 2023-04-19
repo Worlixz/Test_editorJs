@@ -1,0 +1,23 @@
+module.exports = (image, req, res) => {
+
+    console.log(image)
+    // If no image submitted, exit
+    if (!image){
+        console.log('je suis dans le premier if')
+        return res.sendStatus(400);
+    } 
+
+    // If does not have image mime type prevent from uploading
+    if (!image.mimetype.startsWith("image")){
+        console.log('je suis dans le deuxième if ')
+        return res.status(400)        
+    } 
+
+  
+    // Move the uploaded image to our upload folder
+    image.mv(__dirname + '/upload/' + image.name);
+
+    // All good
+    res.sendStatus(200)
+    
+}
