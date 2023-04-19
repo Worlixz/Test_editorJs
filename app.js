@@ -27,7 +27,7 @@ app.set('view engine', 'ejs')
 
 
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', { functionPostUpload })
 })
 app.get('/createarticles', (req, res) => {
     res.render('createarticles')
@@ -36,10 +36,10 @@ app.get('/createarticles', (req, res) => {
 
 app.post('/upload', (req, res) => {
     // Get the file that was set to our field named "image"
-    console.log(Date.now())
     const { image } = req.files;
 
     functionPostUpload(image, req, res)
+    console.log(data_return)
 });
 
 app.post('/img_articles', multer, (req, res) => {
