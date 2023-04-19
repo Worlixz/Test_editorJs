@@ -24,10 +24,10 @@ app.use(cors())
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-
+let data_test
 
 app.get('/', (req, res) => {
-    res.render('index', { functionPostUpload })
+    res.render('index', { data_test })
 })
 app.get('/createarticles', (req, res) => {
     res.render('createarticles')
@@ -39,7 +39,8 @@ app.post('/upload', (req, res) => {
     const { image } = req.files;
 
     functionPostUpload(image, req, res)
-    console.log(data_return)
+    data_test = data_return
+    console.log(data_test)
 });
 
 app.post('/img_articles', multer, (req, res) => {

@@ -1,12 +1,12 @@
 const form = document.getElementById('form')
 const date_parution = document.getElementById('date_parution')
 
-
 let date;
 date_parution.addEventListener('change', (e) => {
     console.log(e.target.value)
     date = e.target.value
 })
+
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
