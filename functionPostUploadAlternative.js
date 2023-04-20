@@ -1,18 +1,16 @@
-module.exports = (image, req, res) => {
-
-    // If no image submitted, exit
+export function uploadAlternative (image, req, res) {
     if (!image){
         console.log('je suis dans le premier if')
         return res.sendStatus(400);
     } 
 
     // If does not have image mime type prevent from uploading
-    if (!image.mimetype.startsWith("image")){
+    if (!image.type.startsWith("image")){
         console.log('je suis dans le deuxième if ')
         return res.status(400)        
     } 
 
-    if(image.mimetype.startsWith("image")){
+    if(image.type.startsWith("image")){
         const destructuring = image.name.split('.')
 
         const name = destructuring[0].split(' ').join('_')
@@ -34,5 +32,8 @@ module.exports = (image, req, res) => {
 
         return value_img_upload
     }
-    
+}
+
+export function testHello (value){
+    console.log(value)
 }

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js_client/script-editor-articles.js"></script>
+  <title>Document</title>
 </head>
 <body>
-    <h2>Création d'articles : </h2>
+
+  <h2>Création d'articles sur la route create articles : </h2>
     <form action="/api/form" id="form" enctype="multipart/form-data">
         <div id="editorjs"></div>
         <div>
@@ -17,7 +19,6 @@
         </div>
         <input type="submit" value="Envoyer">
     </form>
-
 
     <script src="../js_client/script-index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
@@ -59,13 +60,22 @@
                 image: {
                     class: ImageTool,
                     config: {
-                        endpoints: {
-                        byFile: 'http://localhost:3000/upload', // Your backend file uploader endpoint
-                        byUrl: 'http://localhost:8008/fetchUrl', // Your endpoint that provides uploading by Url
+                        uploader: {
+                          uploadByFile(file){
+                          // your own uploading logic here
+                          return MyAjax.upload(file).then(() => {
+                            return {
+                              success: 1,
+                              file: {
+                                url: 'https://codex.so/upload/redactor_images/o_80beea670e49f04931ce9e3b2122ac70.jpg',
+                                // any other image data you want to store, such as width, height, color, extension, etc
+                              }
+                            };
+                          });
+                        },
                         }
                     }
                 }
-
             }
         })
     </script>

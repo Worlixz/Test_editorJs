@@ -25,28 +25,22 @@ app.set('views', './views')
 app.set('view engine', 'ejs')
 
 let data_test
+let value_img_transfert
 
 app.get('/', (req, res) => {
-    res.render('index', { data_test })
+    res.render('index')
 })
 app.get('/createarticles', (req, res) => {
-    res.render('createarticles')
+    res.render('editorArticles')
 })
-
 
 app.post('/upload', (req, res) => {
     // Get the file that was set to our field named "image"
     const { image } = req.files;
 
     functionPostUpload(image, req, res)
-    data_test = data_return
-    console.log(data_test)
+    value_img_transfert = value_img_upload
 });
-
-app.post('/img_articles', multer, (req, res) => {
-    console.log('req.body => post => img_articles : ',req)
-    console.log('méthode post /img_articles')
-})
 
 require('./js_serveur/apiForm')(app)
 
