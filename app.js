@@ -8,7 +8,6 @@ const cors = require('cors')
 const functionPostUpload = require('./functionPostUpload')
 
 
-
 const PORT = 3000
 
 const app = express()
@@ -18,14 +17,13 @@ app.use('/js_client', express.static('js_client'))
 app.use(fileUpload())
 app.use('/images', express.static(path.join(__dirname, 'upload')));
 app.use('/images', express.static(path.join(__dirname, 'assets/img_articles')));
-app.use(bodyParser.json())
+app.use(express.json({limit: '50mb'}));
 app.use(cors())
 
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
-let data_test
-let value_img_transfert
+
 
 app.get('/', (req, res) => {
     res.render('index')
@@ -39,7 +37,6 @@ app.post('/upload', (req, res) => {
     const { image } = req.files;
 
     functionPostUpload(image, req, res)
-    value_img_transfert = value_img_upload
 });
 
 require('./js_serveur/apiForm')(app)

@@ -1,6 +1,4 @@
-module.exports = (image, req, res) => {
-
-    // If no image submitted, exit
+function postUpload (image, req, res) {
     if (!image){
         console.log('je suis dans le premier if')
         return res.sendStatus(400);
@@ -34,5 +32,6 @@ module.exports = (image, req, res) => {
 
         return value_img_upload
     }
-    
 }
+
+module.exports = postUpload

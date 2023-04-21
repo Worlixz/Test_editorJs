@@ -34,6 +34,7 @@ export function uploadAlternative (image, req, res) {
     }
 }
 
-export function testHello (value){
+
+export function helloTest(value){
     console.log(value)
 }

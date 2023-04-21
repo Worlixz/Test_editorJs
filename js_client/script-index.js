@@ -1,5 +1,84 @@
+import { postImage } from "./fetch-upload.js";
+
+
 const form = document.getElementById('form')
 const date_parution = document.getElementById('date_parution')
+
+
+
+const editor = new EditorJS({
+    holder: "editorjs",
+    tools: {
+        header: {
+            class: Header,
+            config : {
+                placeholder: 'Mettre un titre',
+                shortcut: 'CMD+SHIFT+h',
+                levels: [1,2,3],
+                defaultLevel: 1
+            }
+        },
+        list: {
+            class: List,
+            inlineToolbar: true,
+            shortcut: 'CMD+SHIFT+l',
+            config: {
+                defaultStyle: 'unordered'
+            }
+        },
+        quote: {
+            class: Quote,
+            inlineToolbar: true,
+            shortcut: 'CMD+SHIFT+q',
+            config: {
+                quotePlaceholder: 'Enter a quote',
+                captionPlaceholder: 'Quote\'s author',
+            }
+        },
+        image: {
+            class: ImageTool,
+            config: {
+                uploader: {
+                  uploadByFile(file){
+                    let image = file
+                  // your own uploading logic here
+                  return postImage(image)
+                  .then(() => {
+                    return {
+                        success: 1,
+                        file: {
+                            url: 'tetete'
+                        }
+                    }
+                  }).catch((err) => {
+                    console.log(err)
+                  })
+                },
+                }
+            }
+        } 
+        /* image: {
+            class: ImageTool,
+            config: {
+                uploader: {
+                  uploadByFile(file){
+                  // your own uploading logic here
+                  return postImage(file).then((success) => {
+                    return {
+                      success: 1,
+                      file: {
+                        url: 'https://codex.so/upload/redactor_images/o_80beea670e49f04931ce9e3b2122ac70.jpg',
+                        // any other image data you want to store, such as width, height, color, extension, etc
+                      }
+                    };
+                  });
+                },
+                }
+            }
+        } */
+    }
+})
+
 
 let date;
 date_parution.addEventListener('change', (e) => {

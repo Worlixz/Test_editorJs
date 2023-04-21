@@ -16,17 +16,20 @@
             <input type="date" id="date_parution">
         </div>
         <input type="submit" value="Envoyer">
+
     </form>
 
 
-    <script src="../js_client/script-index.js"></script>
+    <script type="module" src="../js_client/script-index.js"></script>
+    <script type="module" src="../js_client/fetch-upload.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
-    <script>       
+    <!-- <script>       
+        
         const editor = new EditorJS({
             holder :'editorjs',
             tools: {
@@ -56,6 +59,14 @@
                         captionPlaceholder: 'Quote\'s author',
                     },
                 },
+                /* image: {
+                    class: ImageTool,
+                    config: {
+                        endpoints: {
+                        byFile: 'http://localhost:3000/upload'
+                        }
+                    }
+                } */
                 image: {
                     class: ImageTool,
                     config: {
@@ -67,6 +78,6 @@
 
             }
         })
-    </script>
+    </script> -->
 </body>
 </html>
