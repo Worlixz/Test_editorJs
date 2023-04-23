@@ -1,10 +1,10 @@
 import { postImage } from "./fetch-upload.js";
+import { altertaniveUp } from "../js_serveur/functionPostingImage.js";
+
 
 
 const form = document.getElementById('form')
 const date_parution = document.getElementById('date_parution')
-
-
 
 const editor = new EditorJS({
     holder: "editorjs",
@@ -38,11 +38,14 @@ const editor = new EditorJS({
         image: {
             class: ImageTool,
             config: {
+                endpoints: {
+                    byFile: "localhost:3000/upload"
+                },
                 uploader: {
                   uploadByFile(file){
                     let image = file
                   // your own uploading logic here
-                  return postImage(image)
+                  return altertaniveUp(image)
                   .then(() => {
                     return {
                         success: 1,

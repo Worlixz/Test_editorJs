@@ -1,4 +1,5 @@
-export function uploadAlternative (image, req, res) {
+export function altertaniveUp (image, req, res) {
+
     if (!image){
         console.log('je suis dans le premier if')
         return res.sendStatus(400);
@@ -16,21 +17,21 @@ export function uploadAlternative (image, req, res) {
         const name = destructuring[0].split(' ').join('_')
         const extension = destructuring[1]
 
-        image.name = (name + '_' + Date.now() + '.' + extension)
+        /* image.name = (name + '_' + Date.now() + '.' + extension) */
 
         const url = '/upload/'+image.name
 
         image.mv(__dirname+ '/upload/' + image.name)
         console.log('dans le dernier if : ',image)
 
-        value_img_upload = {
+        /* value_img_upload = {
             success: 1,
             file: {
                 url
             }
         }
 
-        return value_img_upload
+        return value_img_upload */
     }
 }
 

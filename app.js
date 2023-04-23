@@ -14,9 +14,9 @@ const app = express()
 
 app.use('/css', express.static('css'))
 app.use('/js_client', express.static('js_client'))
+app.use('/js_serveur', express.static('js_serveur'))
 app.use(fileUpload())
 app.use('/images', express.static(path.join(__dirname, 'upload')));
-app.use('/images', express.static(path.join(__dirname, 'assets/img_articles')));
 app.use(express.json({limit: '50mb'}));
 app.use(cors())
 
@@ -33,6 +33,7 @@ app.get('/createarticles', (req, res) => {
 })
 
 app.post('/upload', (req, res) => {
+    console.log('je suis sur upload')
     // Get the file that was set to our field named "image"
     const { image } = req.files;
 
