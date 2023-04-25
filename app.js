@@ -14,7 +14,7 @@ const PORT = 3000
 const app = express()
 
 app.use(express.static('public'))
-app.use(express.static('upload'))
+app.use('/upload', express.static(__dirname + '/upload'))
 app.use(fileUpload())
 app.use(express.json({limit: '50mb'}));
 app.use(cors())
