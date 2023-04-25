@@ -3,6 +3,7 @@ import { altertaniveUp } from "../js_serveur/functionPostingImage.js";
 
 
 
+
 const form = document.getElementById('form')
 const date_parution = document.getElementById('date_parution')
 
@@ -40,24 +41,15 @@ const editor = new EditorJS({
             config: {
                 // En passant par cette méthode l'image est bien enregistré en local mais il n'u a aucun retour afin de EditorJS puisse prendre connaissance de l'upload de l'image
                 endpoints: {
-                    byFile: "http://localhost:3000/upload"
-                }
+                    byFile: "http://localhost:3000/upload",
+                    
+                },
                 // via cette méthode impossible de récupérer l'image pour l'enregistré dans un dossier local
                 /* uploader: {
                     uploadByFile(file){
                     console.log('file dans script-index : ',file)
                   // your own uploading logic here
-                    return postImage(file)
-                    .then(() => {
-                        return {
-                            success: 1,
-                            file: {
-                                url: 'tetete'
-                        }
-                        }
-                     }).catch((err) => {
-                        console.log(err)
-                    })
+                    
                     },
                 } */
             }

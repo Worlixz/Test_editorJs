@@ -1,22 +1,21 @@
 const express = require('express')
 const fileUpload = require('express-fileupload')
-const multer = require('./js_serveur/multer-config')
+const multer = require('./public/js_serveur/multer-config')
 const bodyParser = require('body-parser')
 const path = require('path')
 const cors = require('cors')
 
 const functionPostUpload = require('./functionPostUpload')
+const treatementPos  = require('./public/js_serveur/api-fetch-test.js')
 
 
 const PORT = 3000
 
 const app = express()
 
-app.use('/css', express.static('css'))
-app.use('/js_client', express.static('js_client'))
-app.use('/js_serveur', express.static('js_serveur'))
+app.use(express.static('public'))
+app.use(express.static('upload'))
 app.use(fileUpload())
-app.use('/images', express.static(path.join(__dirname, 'upload')));
 app.use(express.json({limit: '50mb'}));
 app.use(cors())
 
@@ -33,14 +32,23 @@ app.get('/createarticles', (req, res) => {
 })
 
 app.post('/upload', (req, res) => {
-    console.log('je suis sur upload')
-    // Get the file that was set to our field named "image"
     const { image } = req.files;
 
     functionPostUpload(image, req, res)
+    .then(data => {
+        res.json(data)
+    })
 });
 
-require('./js_serveur/apiForm')(app)
+app.post('/uploadfetch', (req, res) => {
+    treatementPos( req.files, req.body )
+    .then( data => {
+        res.json(data)
+    })
+    
+})
+
+require('./public/js_serveur/apiForm')(app)
 
 app.listen(PORT, function(){
     console.log('je suis lancee sur le port 3000')

@@ -5,79 +5,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/style.css">
-  <script src="../js_client/script-editor-articles.js"></script>
   <title>Document</title>
 </head>
 <body>
-
-  <h2>Création d'articles sur la route create articles : </h2>
-    <form action="/api/form" id="form" enctype="multipart/form-data">
-        <div id="editorjs"></div>
+    
+    <h2>Test d'un fetch :</h2>
+    <form id="formulaire">
         <div>
-            <label for="">Date de mise en ligne :</label>
-            <input type="date" id="date_parution">
+            <input type="file" name="" id="inputFile">
+            <input type="text" id="inputComments">
         </div>
         <input type="submit" value="Envoyer">
     </form>
-
-    <script src="../js_client/script-index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
-    <script>       
-        const editor = new EditorJS({
-            holder :'editorjs',
-            tools: {
-                header: {
-                    class: Header,
-                    config : {
-                        placeholder: 'Mettre un titre',
-                        shortcut: 'CMD+SHIFT+h',
-                        levels: [1,2,3],
-                        defaultLevel: 1
-                    }
-                },
-                list: {
-                    class: List,
-                    inlineToolbar: true,
-                    shortcut: 'CMD+SHIFT+l',
-                    config: {
-                        defaultStyle: 'unordered'
-                    }
-                },
-                quote: {
-                    class: Quote,
-                    inlineToolbar: true,
-                    shortcut: 'CMD+SHIFT+q',
-                    config: {
-                        quotePlaceholder: 'Enter a quote',
-                        captionPlaceholder: 'Quote\'s author',
-                    },
-                },
-                image: {
-                    class: ImageTool,
-                    config: {
-                        uploader: {
-                          uploadByFile(file){
-                          // your own uploading logic here
-                          return MyAjax.upload(file).then(() => {
-                            return {
-                              success: 1,
-                              file: {
-                                url: 'https://codex.so/upload/redactor_images/o_80beea670e49f04931ce9e3b2122ac70.jpg',
-                                // any other image data you want to store, such as width, height, color, extension, etc
-                              }
-                            };
-                          });
-                        },
-                        }
-                    }
-                }
-            }
-        })
-    </script>
+    
+    <script type="module" src="../js_client/script-editor-articles.js"></script>
 </body>
 </html>
