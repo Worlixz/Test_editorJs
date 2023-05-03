@@ -21,7 +21,7 @@ const premium_article_true = document.getElementById('premium_true')
 const premium_article_false = document.getElementById('premium_false')
 const date_parution = document.getElementById('date_parution')
 const caractMax = document.getElementById('caractMax')
-caractMax.innerHTML = 140
+caractMax.innerHTML = 150
 
 const editor = new EditorJS({
     holder: "editorjs",
@@ -77,7 +77,7 @@ resume_article.addEventListener('change', (e) => {
 })
 
 resume_article.addEventListener('input', (e) => {
-    caractMax.innerHTML = 140 - e.target.value.length
+    caractMax.innerHTML = 150 - e.target.value.length
 })
 duration_article.addEventListener('change', (e) => {
     console.log('duration : ',e.target.value)
