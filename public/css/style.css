@@ -1,7 +1,32 @@
 #editorjs{
     background-color: #fff7dc;
-    margin-bottom: 50px;
-    max-width: 750px;
+    width: 100%;
+}
+.ce-block__content{
+    max-width: 90%;
+}
+.ce-toolbar__content{
+    max-width: 90%;
+}
+
+.formulaire{
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
     margin: 0 auto;
-    margin-bottom: 50px;
+}
+
+.divFormulaire{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 ;
+}
+.divFormulaire label{
+    font-size: 20px;
+    font-weight: 600;
+}
+.divRowsFormulaire{
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
 }

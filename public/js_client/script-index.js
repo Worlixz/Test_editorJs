@@ -2,10 +2,26 @@ import { postImage } from "./fetch-upload.js";
 import { altertaniveUp } from "../js_serveur/functionPostingImage.js";
 
 
+let title;
+let slug;
+let resume;
+let duration;
+let author;
+let premium;
+let date;
 
 
 const form = document.getElementById('form')
+
+const title_article = document.getElementById('title')
+const resume_article = document.getElementById('resume')
+const duration_article = document.getElementById('duration')
+const author_article = document.getElementById('author')
+const premium_article_true = document.getElementById('premium_true')
+const premium_article_false = document.getElementById('premium_false')
 const date_parution = document.getElementById('date_parution')
+const caractMax = document.getElementById('caractMax')
+caractMax.innerHTML = 140
 
 const editor = new EditorJS({
     holder: "editorjs",
@@ -44,44 +60,47 @@ const editor = new EditorJS({
                     byFile: "http://localhost:3000/upload",
                     
                 },
-                // via cette méthode impossible de récupérer l'image pour l'enregistré dans un dossier local
-                /* uploader: {
-                    uploadByFile(file){
-                    console.log('file dans script-index : ',file)
-                  // your own uploading logic here
-                    
-                    },
-                } */
             }
         } 
-        /* image: {
-            class: ImageTool,
-            config: {
-                uploader: {
-                  uploadByFile(file){
-                  // your own uploading logic here
-                  return postImage(file).then((success) => {
-                    return {
-                      success: 1,
-                      file: {
-                        url: 'https://codex.so/upload/redactor_images/o_80beea670e49f04931ce9e3b2122ac70.jpg',
-                        // any other image data you want to store, such as width, height, color, extension, etc
-                      }
-                    };
-                  });
-                },
-                }
-            }
-        } */
     }
 })
 
 
-let date;
+title_article.addEventListener('change', (e) => {
+    console.log('title : ',e.target.value)
+    title = e.target.value
+    slug = title.split(' ').join('-')
+})
+resume_article.addEventListener('change', (e) => {
+    console.log('resume : ',e.target.value)
+    resume = e.target.value
+})
+
+resume_article.addEventListener('input', (e) => {
+    caractMax.innerHTML = 140 - e.target.value.length
+})
+duration_article.addEventListener('change', (e) => {
+    console.log('duration : ',e.target.value)
+    duration = e.target.value
+})
+author_article.addEventListener('change', (e) => {
+    console.log('author : ',e.target.value)
+    author = e.target.value
+})
+premium_article_true.addEventListener('input', (e) => {
+    premium = e.target.value
+    console.log('premium : ', premium)
+})
+premium_article_false.addEventListener('input', (e) => {
+    premium = e.target.value
+    console.log('premium : ', premium)
+})
+
 date_parution.addEventListener('change', (e) => {
-    console.log(e.target.value)
+    console.log('date_parution :',e.target.value)
     date = e.target.value
 })
+
 
 
 form.addEventListener('submit', (e) => {
@@ -89,9 +108,17 @@ form.addEventListener('submit', (e) => {
     editor.save()
     .then(data => {
         let data_article = {
+            title,
+            slug,
+            resume,
             editor : data,
+            duration,
+            author,
+            premium,
             date
         }
+
+        console.log(JSON.stringify(data_article))
 
         if(window.fetch){
             fetch(form.action, {

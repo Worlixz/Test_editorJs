@@ -9,7 +9,7 @@ const functionPostUpload = require('./functionPostUpload')
 const treatementPos  = require('./public/js_serveur/api-fetch-test.js')
 
 
-const PORT = 3000
+const PORT = 4000
 
 const app = express()
 
@@ -51,5 +51,5 @@ app.post('/uploadfetch', (req, res) => {
 require('./public/js_serveur/apiForm')(app)
 
 app.listen(PORT, function(){
-    console.log('je suis lancee sur le port 3000')
+    console.log('je suis lancee sur le port 4000')
 })

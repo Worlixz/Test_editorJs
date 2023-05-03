@@ -9,12 +9,47 @@
 </head>
 <body>
     <h2>Création d'articles : </h2>
-    <form action="/api/form" id="form" enctype="multipart/form-data">
-        <div id="editorjs"></div>
-        <div>
-            <label for="">Date de mise en ligne :</label>
-            <input type="date" id="date_parution">
+    <form class="formulaire" action="/api/form" id="form" enctype="multipart/form-data">
+        <div class="divFormulaire">
+            <label for="">Titre du cours</label>
+            <input type="text" id="title" required>
         </div>
+        <div class="divFormulaire">
+            <label for="">Synopsis du cours : (caractères max : <span id="caractMax"></span>)</label>
+            <textarea name="" id="resume" rows="4" cols="50" maxlength="140" required></textarea>
+        </div>
+        <div class="divFormulaire">
+            <label for="">Contenu du cours :</label>
+            <div id="editorjs"></div>
+        </div>
+        <div class="divRowsFormulaire">
+            <div class="divFormulaire">
+                <label for="">Durée de lecture estimé :</label>
+                <input type="number" id="duration" required>
+            </div>
+            <div class="divFormulaire">
+                <label for="">Auteur :</label>
+                <input type="text" id="author" required>
+            </div>
+        </div>
+        <div class="divRowsFormulaire">
+            <div class="divFormulaire">
+                <label for="">Abonnement nécessaire :</label>
+                <div>
+                    <input class="inputRadioPremium" type="radio" name="premium" id="premium_true" value="true" required>
+                    <label for="premium_true">Oui</label>
+                </div>
+                <div>
+                    <input class="inputRadioPremium" type="radio" name="premium" id="premium_false" value="false" required>
+                    <label for="premium_false">Non</label>
+                </div>
+            </div>
+            <div class="divFormulaire">
+                <label for="">Date de mise en ligne :</label>
+                <input type="date" id="date_parution" required>
+            </div>
+        </div>
+        
         <input type="submit" value="Envoyer">
 
     </form>
@@ -28,56 +63,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
-    <!-- <script>       
-        
-        const editor = new EditorJS({
-            holder :'editorjs',
-            tools: {
-                header: {
-                    class: Header,
-                    config : {
-                        placeholder: 'Mettre un titre',
-                        shortcut: 'CMD+SHIFT+h',
-                        levels: [1,2,3],
-                        defaultLevel: 1
-                    }
-                },
-                list: {
-                    class: List,
-                    inlineToolbar: true,
-                    shortcut: 'CMD+SHIFT+l',
-                    config: {
-                        defaultStyle: 'unordered'
-                    }
-                },
-                quote: {
-                    class: Quote,
-                    inlineToolbar: true,
-                    shortcut: 'CMD+SHIFT+q',
-                    config: {
-                        quotePlaceholder: 'Enter a quote',
-                        captionPlaceholder: 'Quote\'s author',
-                    },
-                },
-                /* image: {
-                    class: ImageTool,
-                    config: {
-                        endpoints: {
-                        byFile: 'http://localhost:3000/upload'
-                        }
-                    }
-                } */
-                image: {
-                    class: ImageTool,
-                    config: {
-                        endpoints: {
-                        byFile: 'http://localhost:3000/upload'
-                        }
-                    }
-                }
-
-            }
-        })
-    </script> -->
+    
 </body>
 </html>
